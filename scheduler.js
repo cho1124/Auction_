@@ -1,5 +1,5 @@
 import cron from 'node-cron';
-import Auction from './routes/auctionRoutes.js';
+import Auction from './models/Auction.js';
 // 경매 종료 스케줄러 - 매 분마다 실행
 cron.schedule('* * * * *', async () => {
   try {
