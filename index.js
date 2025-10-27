@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import auctionRoutes from './routes/auctionRoutes.js';
 import dotenv from 'dotenv';
+import "./scheduler.js";
 
 dotenv.config();
 const app = express();
