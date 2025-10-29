@@ -43,5 +43,12 @@ export const login = async (req, res) => {
   }
 };
 
-export const loginUser = login;
-export const registerUser = register;
+export const registerUser = async (req, res) => {
+  console.log("📥 register req.body:", req.body);
+    return register(req, res);
+};
+
+export const loginUser = login = async (req, res) => {
+  console.log("📥 login req.body:", req.body);
+    return login(req, res);
+}
