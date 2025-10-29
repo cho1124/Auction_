@@ -14,7 +14,9 @@ export const register = async (req, res) => {
     const { username, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
+        console.log("❌ Registration error: Email already in use");
       return res.status(400).json({ message: "Email already in use" });
+      
     }
     const user = new User({ username, email, password });
     await user.save();
@@ -30,10 +32,12 @@ export const login = async (req, res) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+        console.log("❌ Login error: Invalid credentials");
+        return res.status(400).json({ message: "Invalid credentials" });
     }
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
+      console.log("❌ Login error: Invalid credentials");   
       return res.status(400).json({ message: "Invalid credentials" });
     }
     const token = generateToken(user);
