@@ -46,6 +46,7 @@ export const login = async (req, res) => {
     const token = generateToken(user);
     res.status(200).json({ token });
   } catch (error) {
+    console.error("💥 comparePassword Error:", error);
     res.status(500).json({ message: "Server error" });
   }
 };
