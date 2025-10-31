@@ -9,6 +9,7 @@ const generateToken = (user) => {
     { expiresIn: "1h" }
   );
 };
+//register function
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -26,7 +27,7 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-
+//login function
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
