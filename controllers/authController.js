@@ -22,7 +22,11 @@ export const register = async (req, res) => {
     const user = new User({ username, email, password });
     await user.save();
     const token = generateToken(user);
-    res.status(201).json({ token });
+    res.status(201).json({ token,
+      user: { username: user.username, email: user.email
+    }
+
+     });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
@@ -44,7 +48,9 @@ export const login = async (req, res) => {
       return res.status(400).json({ message: "Invalid credentials" });
     }
     const token = generateToken(user);
-    res.status(200).json({ token });
+    res.status(200).json({
+       token,
+      user: { username: user.username, email: user.email } });
   } catch (error) {
     console.error("💥 comparePassword Error:", error);
     res.status(500).json({ message: "Server error" });
